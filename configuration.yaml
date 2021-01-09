@@ -1,0 +1,110 @@
+#
+homeassistant:
+  # https://home-assistant.io/docs/configuration/packages/
+#   packages: !include_dir_named packages
+  customize: !include customize.yaml
+  temperature_unit: C
+  unit_system: metric
+  name: !secret name
+  time_zone: Europe/Moscow
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  external_url: !secret external_url
+  internal_url: !secret internal_url
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+# https://www.home-assistant.io/integrations/default_config/
+default_config:
+
+system_health:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+history: !include history.yaml
+zone: !include zones.yaml
+person: !include persons.yaml
+mikrotik: !include mikrotik.yaml
+
+# Add-on: MariaDB
+recorder: !include recorders.yaml
+
+# Add-on: InfluxDB
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - sun
+  tags:
+    instance: prod
+    source: hass
+
+
+# Home Assistant iOS
+# https://www.home-assistant.io/docs/ecosystem/ios/
+ios:
+  actions:
+    - name: test_message
+      background_color: "#000000"
+      label:
+        text: "Hello, World"
+        color: "#ff0000"
+      icon:
+        icon: earth
+        color: "#ffffff"
+
+  push:
+    categories:
+      - name: Alarm
+        identifier: 'alarm'
+        actions:
+          - identifier: 'SOUND_ALARM'
+            title: 'Sound Alarm'
+            activationMode: 'background'
+            authenticationRequired: true
+            destructive: true
+            behavior: 'default'
+          - identifier: 'SILENCE_ALARM'
+            title: 'Silence Alarm'
+            activationMode: 'background'
+            authenticationRequired: true
+            destructive: false
+            behavior: 'textInput'
+            textInputButtonTitle: 'Silencio!'
+            textInputPlaceholder: 'Placeholder'
+
+#
+# Telegram Configuration
+#
+# telegram_bot:
+#   # Setup Broadcast for sending messages
+#   - platform: broadcast
+#     api_key: !secret telegram_apikey
+#     allowed_chat_ids:
+#       - !secret telegram_chatid
+
+#   # Add Polling
+#   - platform: polling
+#     api_key: !secret telegram_apikey
+#     allowed_chat_ids:
+#       - !secret telegram_chatid
+
+# HACS
+sonoff: !include hacs/sonoff.yaml
+
+
+
+

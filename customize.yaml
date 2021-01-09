@@ -1,0 +1,14 @@
+
+sensor.sonoff_1000cf424a_humidity:
+  hidden: false
+  friendly_name: Влажность в ванной
+  entity_id: sensor.bathroom_humidity
+
+sensor.sonoff_1000cf424a_temperature:
+  hidden: false
+  friendly_name: Температура в ванной
+  entity_id: sensor.bathroom_temperature
+
+binary_sensor.door_window_sensor_158d00028de9ab:
+  friendly_name: Входная дверь
+  entity_id: binary_sensor.entrance_door_sensor

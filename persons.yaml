@@ -1,0 +1,15 @@
+---
+# Documentation https://www.home-assistant.io/integrations/person/
+
+- name: Dmitry
+  id: pessom
+  user_id: 4f7f111affe84df49268784462117fb9
+  device_trackers:
+    - device_tracker.pessom
+
+- name: Julia
+  id: julia
+  user_id: db064de5c1e640db965c32fcf2428fff
+  device_trackers:
+    - device_tracker.iphone_yulia
+    - device_tracker.iphone_yulia_3

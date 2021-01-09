@@ -1,0 +1,13 @@
+username: !secret hacs_sonoff_username
+password: !secret hacs_sonoff_password
+force_update: [temperature, power]
+scan_interval: '00:05:00'  # (optional) default 5 minutes
+sensors: [temperature, humidity, power, current, voltage]
+
+devices:
+  1000cf424a:
+    name: Вытяжка ванная и туалет
+    force_update: True
+  1000ef1dcc:
+    name: Торшер
+    force_update: True
