@@ -1,0 +1,26 @@
+- name: Mikrotik-gw
+  host: !secret mikrotik_gw_host
+  username: !secret mikrotik_gw_username
+  password: !secret mikrotik_gw_password
+  verify_ssl: false
+  arp_ping: true
+  force_dhcp: true
+  detection_time: 30
+
+- name: Mikrotik-point
+  host: !secret mikrotik_point_host
+  username: !secret mikrotik_point_username
+  password: !secret mikrotik_point_password
+  verify_ssl: false
+  arp_ping: true
+  force_dhcp: true
+  detection_time: 30
+
+# - name: Mikrotik-hub
+#   host:
+#   username:
+#   password:
+#   verify_ssl: false
+#   arp_ping: true
+#   force_dhcp: true
+#   detection_time: 30

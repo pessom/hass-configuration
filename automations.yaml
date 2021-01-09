@@ -1,0 +1,53 @@
+# https://www.home-assistant.io/components/automation/
+- id: '1602102053372'
+  alias: Включить светильник
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: d630889300a411eb96a0e3965857f55e
+    entity_id: binary_sensor.door_window_sensor_158d00028de9ab
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: d5a7443d00a411eb8f7ad18fda7a5c39
+    entity_id: light.gateway_light_7c49eb19600e
+    domain: light
+  - service: notify.mobile_app_pessom # https://companion.home-assistant.io/docs/notifications/actionable-notifications
+    data:
+      title: "Дверь открыта"
+      message: "Входная дверь открыта!"
+      data:
+        push:
+          category: "alarm"
+        action_data:
+          entity_id: light.test
+          my_custom_data: foo_bar
+  - delay: '300'
+  - type: turn_off
+    device_id: d5a7443d00a411eb8f7ad18fda7a5c39
+    entity_id: light.gateway_light_7c49eb19600e
+    domain: light
+  mode: single
+
+- id: '2021010614314'
+  alias: Update Available Notification
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.updater
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.notify
+      data:
+        message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
+    # - service: notify.mobile_app_pessom # https://companion.home-assistant.io/docs/notifications/actionable-notifications
+    #   data:
+    #     title: "Доступно обновление"
+    #     message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is available."
+    #     data:
+    #       push:
+    #         category: "alarm"
+    #       action_data:
+    #         entity_id: binary_sensor.updater

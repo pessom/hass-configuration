@@ -1,0 +1,29 @@
+# https://www.home-assistant.io/components/recorder/
+db_url: !secret recorder_db_url
+include:
+  domains:
+    - media_player
+    - switch
+    - light
+    - sensor
+    - climate
+    - binary_sensor
+    - cover
+    - device_tracker
+    - fan
+    - input_number
+    - input_boolean
+    - vacuum
+    - weather
+    - lock
+exclude:
+  domains:
+    - automation
+    - weblink
+    - updater
+    - script
+  entity_globs:
+    - device_tracker.*
+    - camera.*
+  entities:
+    - sun.sun

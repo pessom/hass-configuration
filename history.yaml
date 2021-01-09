@@ -1,0 +1,22 @@
+include:
+  domains:
+    - sensor
+    - switch
+    - media_player
+    - light
+    - binary_sensor
+    - cover
+    - automation
+exclude:
+  domains:
+    - updater
+    - zone
+    - person
+  entity_globs:
+    - sensor.iphone_*
+    - sensor.pessom_*
+  entities:
+    - sensor.local_ip
+    - switch.nas_home_mode
+#     - sensor.last_boot
+#     - sensor.date
