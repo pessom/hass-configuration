@@ -131,4 +131,5 @@ dmypy.json
 
 # Home Assistant
 secrets.yaml
-
+custom_components/
+old/
